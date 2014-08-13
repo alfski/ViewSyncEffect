@@ -4,15 +4,20 @@ Based on StereoEffect.js from vr.chromeexperiments.com.
 
 Shares the camera position and quaternion to a websocket relayer.
 
-Wraps the camera in the ThreeJS app, with a camera that is setable from a websocket and with particular fov and yaw offset.
+Wraps the camera in the ThreeJS app, with a camera that is setable from a websocket and with configurable fov and yaw offset.
 
-`<script src="ViewSyncEffect.js"></script>`
+`<script src="ViewSyncEffect.js"></script>` 
+
+`viewSyncEffect = new THREE.ViewSyncEffect( renderer );
+viewSyncEffect.setSize( window.innerWidth, window.innerHeight );`
+
+`viewSyncEffect.render( scene, camera );`
 
 FYI when reading the examples files I tend to comment with `// Alf` any major changes.
 
 ##How to use/implement these demo's
 
-Place ViewSyncEffect.js, lglion.html and lgpompei.html into the /examples/ folder in the potree distribution
+Place ViewSyncEffect.js, lglion.html and lgpompei.html into the /examples/ folder in an existing potree distribution.
 
 Change websocket server in ViewSyncEffect.js from `ws://192.168.0.233:3000/relay` to the URI of your websocket relay/echo service.
 Any simple websocket echo server will do the job. I have one in Perl. 'coz I'm oldskool.
