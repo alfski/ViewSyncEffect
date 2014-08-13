@@ -8,6 +8,8 @@ Wraps the camera in the ThreeJS app, with a camera that is setable from a websoc
 
 `<script src="ViewSyncEffect.js"></script>`
 
+When reading the examples files I comment with "Alf" any major changes.
+
 ##How to use/implement these demo's
 
 Place ViewSyncEffect.js, lglion.html and lgpompei.html into the /examples/ folder in the potree distribution
@@ -41,11 +43,11 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 * todo: I think there's cleanups around when/where the slave and master camera needs to be set. It may be doing more work than it needs to.
 
-* todo: smarter relayer, that resends current camera pov.
+* todo: smarter relayer, that resends current camera pov on request from a slave start.
 
 * todo: look at websocket-enabling "dat.gui.js"
 
-* note: for potree could for a LOD based on reported fps, to smooth out jitter between slaves.
+* note: potree could benefit from a LOD setting based on a preferred fps. To help smooth jitter between slaves.
 
 * note: in lgpompei.html I disabled the Skybox to give better visual contrast.
 
