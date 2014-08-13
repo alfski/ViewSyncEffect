@@ -29,11 +29,11 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 ##Parameters
 
-"?slave" enables camera sync. Otherwise it is a master and will send it's camera to the websocket relay.
+`?slave` enables camera sync. Otherwise it is a master and will send it's camera to the websocket relay.
 
-"?fov=DEGREES" to set the camera horizontal field of view. This parameter can also be used to set the master fov for display purposes.
+`?fov=DEGREES` to set the camera horizontal field of view. This parameter can also be used to set the master fov for display purposes.
 
-"?yaw=DEGREES" set the slave camera yawOffset.
+`?yaw=DEGREES` set the slave camera yawOffset.
 
 ##Issues & To Do's & Notes
 
