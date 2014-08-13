@@ -27,19 +27,24 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 ##Parameters
 
-"slave" enables camera sync.
+"?slave" enables camera sync.
 
-"fov" to set the camera horizontal field of view, in degrees. This parameter can also be used to set the master fov for display purposes.
+"?fov=DEGREES" to set the camera horizontal field of view. This parameter can also be used to set the master fov for display purposes.
 
-"yaw" set the slave camera yawOffset, in degrees.
+"?yaw=DEGREES" set the slave camera yawOffset.
 
 ##Issues & To Do's
 
-* possibly add pitch and roll offseting, just for 'ViewSync' completeness.
+* issue: only seems to work is there's a single scene to render. I had to merge the potree SkyBox into the point cloud scene.
 
-* I think there's cleanups to when the camera needs to be set.
+* todo: possibly add pitch and roll offseting. Mainly for 'ViewSync' completeness.
 
-* smarter relayer, that resends current camera pov.
+* todo: I think there's cleanups to when the camera needs to be set.
 
-* look at websocket-enabling "dat.gui.js"
+* todo: smarter relayer, that resends current camera pov.
 
+* todo: look at websocket-enabling "dat.gui.js"
+
+* note: for potree could for a LOD based on reported fps, to smooth out jitter between slaves.
+
+* note: in lgpompei.html I disabled the Skybox to give better visual contrast.
