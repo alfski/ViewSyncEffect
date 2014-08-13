@@ -18,5 +18,7 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 ```
 
 "slave" enables camera sync.
+
 "fov" to set the camera horizontal field of view. Can also available on master.
+
 "yaw" set the slave camera yawOffset, in degrees.
