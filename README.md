@@ -6,12 +6,14 @@ Shares the camera position and quaternion to a websocket relayer.
 
 Wraps the camera in the ThreeJS app, with a camera that is setable from a websocket and with configurable fov and yaw offset.
 
-`<script src="ViewSyncEffect.js"></script>` 
-
-`viewSyncEffect = new THREE.ViewSyncEffect( renderer );
-viewSyncEffect.setSize( window.innerWidth, window.innerHeight );`
-
-`viewSyncEffect.render( scene, camera );`
+```
+<script src="ViewSyncEffect.js"></script>
+...
+var viewSyncEffect = new THREE.ViewSyncEffect( renderer );
+viewSyncEffect.setSize( window.innerWidth, window.innerHeight );
+...
+viewSyncEffect.render( scene, camera );
+```
 
 FYI when reading the examples files I tend to comment with `// Alf` any major changes.
 
