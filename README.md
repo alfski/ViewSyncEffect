@@ -10,10 +10,10 @@ Copy ViewSyncEffect.js, lglions.html and lgpompei.html into the /examples/ folde
 ##How to start the apps
 
 ```
-Master http://YOURWEBSERVER/lglion.html
+Master http://YOURWEBSERVER/lglion.html?master
 Slaves http://YOURWEBSERVER/lglion.html?slave&fov=30&yaw=33
 
-Master http://YOURWEBSERVER/lgpompei.html
+Master http://YOURWEBSERVER/lgpompei.html?master
 Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 ```
 
@@ -21,6 +21,6 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 "slave" enables camera sync.
 
-"fov" to set the camera horizontal field of view. Can also available on master.
+"fov" to set the camera horizontal field of view. Also works on master.
 
 "yaw" set the slave camera yawOffset, in degrees.
