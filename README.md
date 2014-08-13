@@ -10,9 +10,9 @@ Copy lglions.html and lgpompei.html into the /examples/ folder in the potree dis
 How to call the apps...
 
 ```
-Master -- /lglions.html
-Slaves -- /lglions.html?slave&fov=30&yaw=33
+Master http://WEBSERVER/lglion.html
+Slaves http://WEBSERVER/lglion.html?slave&fov=30&yaw=33
 
-Master -- /lgpompei.html
-Slaves -- /lgpompei.html?slave&fov=25&yaw=-29
+Master http://WEBSERVER/lgpompei.html
+Slaves http://WEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 ```
