@@ -40,11 +40,13 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 `?fov=DEGREES` set the camera horizontal field of view. This parameter can be used on master or slave.
 
-`?yaw=DEGREES` set the slave camera yawOffset. Also works on master, but not sure why you would want to!
+`?yaw=DEGREES` set the slave camera yawOffset. Also works on master, but not sure why you would want to! Currently, if you do this on a master, the un-offset view is what wll be shared.
 
-##Issues & ToDo's & Notes
+##Issues, ToDo's & Notes
 
-* issue: only seems to work is there's a single scene to render. To get the sky box I had to merge it with the point cloud scene.
+* issue: This only seems to work is there's a single scene to render. To get the sky box I had to merge it with the point cloud scene. How to deal with multiple scenes or post-processing.
+
+* todo: convert more of the vr.chromeexperiments.com demos to Liquid Galaxy. can we do this on-demand?
 
 * todo: possibly add pitch and roll offseting. Mainly for 'ViewSync' completeness.
 
@@ -52,10 +54,22 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 * todo: smarter relayer, that resends current camera pov on request from a slave start.
 
-* todo: look at websocket-enabling "dat.gui.js"
+* todo: look at websocket-enabling "dat.gui.js" (control GUI)
+
+* todo: could maybe also look at OrbitControls.
+
+* todo: we need a SpaceNavigator/GamePadAPI camera control for ThreeJS/webgl. Student project?
+
+* todo: convert to binary websockets and ditch the JSON stringify/parse step.
+
+* todo: perhaps limit the number of signficant figures in shared camera, not so much a problem if JSON is in binary.
+
+* todo: check qryArgs parse as numbers, check range, fallback to safe values.
 
 * note: potree could benefit from a LOD setting based on a preferred fps. To help smooth jitter between slaves.
 
-* note: in lgpompei.html I disabled the Skybox to give better visual contrast.
+* note: for lgpompei.html I disabled the skybox so it renders against a simple black background. I think it looks better.
 
-* todo: convert to binary websockets and ditch the JSON stringify/parse step.
+## Changelog
+
+* 2013.08.13 first public release outside of Wonderama Lab
