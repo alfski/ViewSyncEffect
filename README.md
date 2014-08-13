@@ -1,6 +1,6 @@
 #ViewSyncEffect.js 
 
-Based on StereoEffect.js from (vr.chomeexperiements.com)[http://vr.chromeexperiments.com/.
+Based on StereoEffect.js from [vr.chomeexperiements.com](http://vr.chromeexperiments.com/).
 
 Shares the camera position and quaternion to a websocket relayer.
 
@@ -19,7 +19,7 @@ FYI when reading the examples, I tend to comment with `// Alf` the major changes
 
 ##How to use/implement these demo's
 
-Place `ViewSyncEffect.js`, `lglion.html` and `lgpompei.html` in the /examples/ folder of an existing potree distribution. See (potree.org)[http://potree.org/]
+Place `ViewSyncEffect.js`, `lglion.html` and `lgpompei.html` in the /examples/ folder of an existing potree distribution. See [potree.org](http://potree.org/)
 
 Change websocket server in `ViewSyncEffect.js` from `ws://192.168.0.233:3000/relay` to the URI of your websocket relay/echo service.
 Any simple websocket echo server will do the job. I have one in Perl. 'coz I'm oldskool.
