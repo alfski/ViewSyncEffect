@@ -8,7 +8,7 @@ Wraps the camera in the ThreeJS app, with a camera that is setable from a websoc
 
 `<script src="ViewSyncEffect.js"></script>`
 
-When reading the examples files I comment with "Alf" any major changes.
+FYI when reading the examples files I tend to comment with "// Alf" any major changes.
 
 ##How to use/implement these demo's
 
