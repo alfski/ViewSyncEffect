@@ -1,8 +1,8 @@
-=ViewSyncEffect.js=
+= ViewSyncEffect.js =
 
 Based on StereoEffect.js from vr.chromeexperiments.com.
 
-Change the URI ViewSyncEffect.js from "ws://192.168.0.233:3000/relay" to the URI of your local websocket relay service.
+Change the websocke from "ws://192.168.0.233:3000/relay" to the URI of your local websocket relay service.
 
 Copy lglions.html and lgpompei.html into the /examples/ folder in the potree distribution
 
