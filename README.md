@@ -7,7 +7,7 @@ Change websocket server from "ws://192.168.0.233:3000/relay" to the URI of your 
 Copy lglions.html and lgpompei.html into the /examples/ folder in the potree distribution
 
 
-How to call the apps...
+##How to call the apps##
 
 ```
 Master http://YOURWEBSERVER/lglion.html
@@ -16,6 +16,8 @@ Slaves http://YOURWEBSERVER/lglion.html?slave&fov=30&yaw=33
 Master http://YOURWEBSERVER/lgpompei.html
 Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 ```
+
+##Paramaters##
 
 "slave" enables camera sync.
 
