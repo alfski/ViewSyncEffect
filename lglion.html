@@ -27,7 +27,7 @@
 
 	<script src="../libs/three.js/build/three.js"></script>
 
-	<script src="../../git/ViewSyncEffect.js"></script>
+	<script src="ViewSyncEffect.js"></script>
 
 	<script src="../libs/other/OrbitControls.js"></script>
 	<script src="../libs/other/stats.min.js"></script>
@@ -50,7 +50,7 @@
 	</div>
 	
 	<script>
-		var defaultPointSize = 0.15; // Alf was 0.03
+		var defaultPointSize = 0.08; // Alf was 0.03
 		var defaultLOD = 20; // Alf was 15
 		var pointcloudPath = "../resources/pointclouds/lion_takanawa/cloud.js";
 	
@@ -180,7 +180,8 @@
 			var numVisiblePoints = 0;
 			for(var i = 0; i < pointclouds.length; i++){
 				var pointcloud = pointclouds[i];
-				pointcloud.update(camera);
+				// pointcloud.update(camera);
+				pointcloud.update( cameraViewSync ); // use ViewSync camera (Alf)
 				numVisibleNodes += pointcloud.numVisibleNodes;
 				numVisiblePoints += pointcloud.numVisiblePoints;
 			}

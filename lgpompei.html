@@ -27,7 +27,7 @@
 
 	<script src="../libs/three.js/build/three.js"></script>
 
-	<script src="../../js/third-party/threejs/GalaxyEffectWebSocket.js"></script>
+	<script src="ViewSyncEffect.js"></script>
 
 	<script src="../libs/other/OrbitControls.js"></script>
 	<script src="../libs/other/stats.min.js"></script>
@@ -55,7 +55,7 @@
 		var pointcloudPath = "../resources/pointclouds/pompei/cloud.js";
 	
 		var renderer;
-		var galaxyEffect; // Alf
+		var viewSyncEffect; // Alf
 		var camera;
 		var cube;
 		var scene;
@@ -103,8 +103,8 @@
 			renderer.autoClear = false;
 			document.body.appendChild(renderer.domElement);
 
-			galaxyEffect = new THREE.GalaxyEffect( renderer );
-			galaxyEffect.setSize( window.innerWidth, window.innerHeight );
+			viewSyncEffect = new THREE.ViewSyncEffect( renderer );
+			viewSyncEffect.setSize( window.innerWidth, window.innerHeight );
 
 			// start Skybox();
 			var path = "../resources/textures/skybox/";
@@ -180,15 +180,15 @@
 			var numVisiblePoints = 0;
 			for(var i = 0; i < pointclouds.length; i++){
 				var pointcloud = pointclouds[i];
-				pointcloud.update( _cameraGalaxy ); // Alf - update scene based on local GalaxyCam
+				pointcloud.update( cameraViewSync ); // Alf - update scene based on tweaked cam
 				numVisibleNodes += pointcloud.numVisibleNodes;
 				numVisiblePoints += pointcloud.numVisiblePoints;
 			}
 			
 			//cameraCube.rotation.copy( camera.rotation ); // Alf no skyCube
 			//renderer.render( sceneCube, cameraCube ); // Alf merged with scene
-			//renderer.render( scene, camera ); // Alf use galaxy render
-			galaxyEffect.render( scene, camera ); // Alf
+			//renderer.render( scene, camera ); // Alf use viewsync render
+			viewSyncEffect.render( scene, camera ); // Alf
 			
 			document.getElementById("lblNumVisibleNodes").innerHTML = "visible nodes: " + numVisibleNodes;
 			document.getElementById("lblNumVisiblePoints").innerHTML = "visible points: " + Potree.utils.addCommas(numVisiblePoints);
