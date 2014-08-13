@@ -8,13 +8,13 @@ Wraps the camera in the ThreeJS app, with a camera that is setable from a websoc
 
 `<script src="ViewSyncEffect.js"></script>`
 
-FYI when reading the examples files I tend to comment with "// Alf" any major changes.
+FYI when reading the examples files I tend to comment with `// Alf` any major changes.
 
 ##How to use/implement these demo's
 
 Place ViewSyncEffect.js, lglion.html and lgpompei.html into the /examples/ folder in the potree distribution
 
-Change websocket server in ViewSyncEffect.js from "ws://192.168.0.233:3000/relay" to the URI of your websocket relay/echo service.
+Change websocket server in ViewSyncEffect.js from `ws://192.168.0.233:3000/relay` to the URI of your websocket relay/echo service.
 Any simple websocket echo server will do the job. I have one in Perl. 'coz I'm oldskool.
 
 ##How to launch the app examples
