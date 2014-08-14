@@ -1,5 +1,7 @@
 #ViewSyncEffect.js 
 
+_Note: this README is a work in progress_
+
 Based on StereoEffect.js from [vr.chomeexperiements.com](http://vr.chromeexperiments.com/).
 
 Shares the camera position and quaternion to a websocket relayer.
@@ -52,7 +54,7 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 * todo: I think there's cleanups around when/where the slave and master camera needs to be set. It may be doing more work than it needs to.
 
-* todo: smarter relayer, that resends current camera pov on request from a slave start.
+* todo: make a smarter relayer. eg. one that resends last sent camera pov on slave connect.
 
 * todo: look at websocket-enabling "dat.gui.js" (control GUI)
 
@@ -60,11 +62,15 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 * todo: we need a SpaceNavigator/GamePadAPI camera control for ThreeJS/webgl. Student project?
 
-* todo: convert to binary websockets and ditch the JSON stringify/parse step.
+* todo: convert to binary websockets and ditch the JSON stringify and parse steps.
 
 * todo: perhaps limit the number of signficant figures in shared camera, not so much a problem if JSON is in binary.
 
 * todo: check qryArgs parse as numbers, check range, fallback to safe values.
+
+* todo: finish up and share Go based websocket relayer.
+
+* todo: really need to be using a broadcast messaging system rather than client-server. Maybe a Chrome socket plugin or WebRTC data channel?
 
 * note: potree could benefit from a LOD setting based on a preferred fps. To help smooth jitter between slaves.
 
