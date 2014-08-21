@@ -51,7 +51,7 @@ THREE.ViewSyncEffect = function ( renderer ) {
 	}
 
 	// set up websocket callbacks
-	if (_slave) { // only slaves need to listen for inbound websocket messages
+	if ( _slave ) { // only slaves need to listen for inbound websocket messages
 		_websocket.onmessage = function ( evt ) {
 			//console.log("evt:"+evt.data);
 			var camData = JSON.parse( evt.data );
@@ -59,9 +59,11 @@ THREE.ViewSyncEffect = function ( renderer ) {
 			_quaternion = camData.q;
 		}
 	}
-	_websocket.onopen = function () { _wsConnected = true; }
+	_websocket.onopen = function () {
+		_wsConnected = true;
+		// if ( _slave ) { _websocket.send( "resend" ); }
+	}
 	_websocket.onclose = function () { _wsConnected = false; }
-
 
 	renderer.autoClear = false;
 
@@ -74,7 +76,8 @@ THREE.ViewSyncEffect = function ( renderer ) {
 
 	this.setClearColor = function ( color ) {
 
-		renderer.setClearColor( color );
+		//console.log("setClearColor:"+color);
+		renderer.setClearColor( color, 1 );
 	};
 
 	this.render = function ( scene, camera ) {
