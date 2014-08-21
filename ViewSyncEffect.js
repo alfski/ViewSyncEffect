@@ -13,7 +13,7 @@ THREE.ViewSyncEffect = function ( renderer ) {
 
 	// internals
 
-	var _websocket = new WebSocket( "ws://192.168.0.233:3000/relay" ); // arg?
+	var _websocket = new WebSocket( "ws://192.168.0.233:3000/relay" ); // make this an arg or config?
 
 	var _position = new THREE.Vector3();
 	var _quaternion = new THREE.Quaternion();
@@ -51,13 +51,7 @@ THREE.ViewSyncEffect = function ( renderer ) {
 	}
 
 	// set up websocket callbacks
-	_websocket.onopen = function () {
-		_wsConnected = true;
-		// now ask relay to resend last pov message?
-	}
-	_websocket.onclose = function () { _wsConnected = false; }
-
-	if (_slave) { // only slaves need this
+	if (_slave) { // only slaves need to listen for inbound websocket messages
 		_websocket.onmessage = function ( evt ) {
 			//console.log("evt:"+evt.data);
 			var camData = JSON.parse( evt.data );
@@ -65,6 +59,9 @@ THREE.ViewSyncEffect = function ( renderer ) {
 			_quaternion = camData.q;
 		}
 	}
+	_websocket.onopen = function () { _wsConnected = true; }
+	_websocket.onclose = function () { _wsConnected = false; }
+
 
 	renderer.autoClear = false;
 
@@ -73,6 +70,11 @@ THREE.ViewSyncEffect = function ( renderer ) {
 		renderer.setSize( width, height );
 
 		_yawRads = _yaw * width/height * Math.PI/180; 
+	};
+
+	this.setClearColor = function ( color ) {
+
+		renderer.setClearColor( color );
 	};
 
 	this.render = function ( scene, camera ) {
@@ -89,12 +91,12 @@ THREE.ViewSyncEffect = function ( renderer ) {
 			//console.log("pov:"+povMesg);
 
 			if ( povMesg != _lastMesg && _wsConnected ) { // only if new data and connected
-                        	_websocket.send( povMesg ); // needs "pov" prefix
+                        	_websocket.send( povMesg );
 				_lastMesg = povMesg;
 			}
 		}
 
-		if ( _fov != 0) { camera.fov = _fov; } // always overwrite fov, if set
+		if ( _fov != 0) { camera.fov = _fov; } // if set, always overwrite fov
 
 		camera.updateProjectionMatrix();
 
@@ -105,7 +107,8 @@ THREE.ViewSyncEffect = function ( renderer ) {
 		if (_yawRads != 0 ) {
 			cameraViewSync.rotateOnAxis( _yawAxis, _yawRads );
 		}
-		// eventually add pitch & roll
+		// if (_pitchRads != 0 ) { }
+		// if (_rollRads != 0 ) { }
 
 		cameraViewSync.updateMatrixWorld();
 
