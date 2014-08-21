@@ -17,14 +17,14 @@ viewSyncEffect.setSize( window.innerWidth, window.innerHeight );
 viewSyncEffect.render( scene, camera );
 ```
 
-FYI when reading the examples, I tend to comment with `// Alf` the major changes.
+FYI when reading the examples, I tend to comment with `// Alf` the major changes from the initial code.
 
 ##How to use/implement these demo's
 
-Place `ViewSyncEffect.js`, `lglion.html` and `lgpompei.html` in the /examples/ folder of an existing potree distribution. See [potree.org](http://potree.org/)
+Place `ViewSyncEffect.js`, `lglion.html` and `lgpompei.html` in the /examples/ folder of an existing potree distribution. See [potree.org](http://potree.org/).
 
 Change websocket server in `ViewSyncEffect.js` from `ws://192.168.0.233:3000/relay` to the URI of your websocket relay/echo service.
-Any simple websocket echo server will do the job. I have one in Perl. 'coz I'm oldskool.
+Any simple websocket echo server will do the job. 'coz I'm oldskool I wrote one in Perl.
 
 ##How to launch the app examples
 
@@ -42,7 +42,7 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 `?fov=DEGREES` set the camera horizontal field of view. This parameter can be used on master or slave.
 
-`?yaw=DEGREES` set the slave camera yawOffset. Also works on master, but not sure why you would want to! Currently, if you do this on a master, the un-offset view is what wll be shared.
+`?yaw=DEGREES` set the slave camera yawOffset. Also works on master, but not sure why you would want to. Currently, if you do this on a master, the un-offset view is what wll be shared.
 
 ##Issues, ToDo's & Notes
 
@@ -50,11 +50,13 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 * todo: convert more of the vr.chromeexperiments.com demos to Liquid Galaxy. can we do this on-demand?
 
-* todo: possibly add pitch and roll offseting. Mainly for 'ViewSync' completeness.
+* todo: possibly add pitch and roll offseting, mainly for 'ViewSync' completeness.
 
 * todo: I think there's cleanups around when/where the slave and master camera needs to be set. It may be doing more work than it needs to.
 
-* todo: make a smarter relayer. eg. one that resends last sent camera pov on slave connect.
+* todo: make a smarter relayer. eg. one that resends last sent camera pov on slave connect. DONE.
+
+* todo: something weird is happening with renderer.setClearColor().
 
 * todo: look at websocket-enabling "dat.gui.js" (control GUI)
 
@@ -74,8 +76,12 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 * note: potree could benefit from a LOD setting based on a preferred fps. To help smooth jitter between slaves.
 
+* todo: something weird is happening with renderer.setClearColor().
+
 * note: for lgpompei.html I disabled the skybox so it renders against a simple black background. I think it looks better.
 
 ## Changelog
 
 * 2013.08.13 first public release outside of Wonderama Lab
+
+* 2013.08.21 added effect.setClearColor but does it work?
