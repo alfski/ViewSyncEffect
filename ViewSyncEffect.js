@@ -13,7 +13,7 @@ THREE.ViewSyncEffect = function ( renderer ) {
 
 	// internals
 
-	var _websocket = new WebSocket( "ws://127.0.0.1:8080/echo" ); // arg?
+	var _websocket = new WebSocket( "ws://lg-head:8080/echo" ); // arg?
     //var viewsync = io.connect('ws://localhost:8080/echo');
     //var _websocket = viewsync.socket;
 	//var _websocket = new WebSocket( "ws://192.168.0.233:3000/relay" ); // arg?
