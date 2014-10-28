@@ -13,7 +13,13 @@ THREE.ViewSyncEffect = function ( renderer ) {
 
 	// internals
 
-	var _websocket = new WebSocket( "ws://192.168.0.233:3000/relay" ); // make this an arg or config?
+	var _websocket = new WebSocket( "ws://lg-head:8080/echo" ); // arg?
+    //var viewsync = io.connect('ws://localhost:8080/echo');
+    //var _websocket = viewsync.socket;
+	//var _websocket = new WebSocket( "ws://192.168.0.233:3000/relay" ); // arg?
+
+    var _extraInfo = [];
+    var _extraCallback;         // callback used to process extraInfo data
 
 	var _position = new THREE.Vector3();
 	var _quaternion = new THREE.Quaternion();
@@ -57,6 +63,9 @@ THREE.ViewSyncEffect = function ( renderer ) {
 			var camData = JSON.parse( evt.data );
 			_position = camData.p;
 			_quaternion = camData.q;
+            if ( camData.extra.length > 0 && _extraCallback !== undefined ) {
+                _extraCallback( camData.extra );
+            }
 		}
 	}
 	_websocket.onopen = function () {
@@ -66,6 +75,11 @@ THREE.ViewSyncEffect = function ( renderer ) {
 	_websocket.onclose = function () { _wsConnected = false; }
 
 	renderer.autoClear = false;
+
+    // Sets a callback function to handle extraInfo data on the slave
+    this.setExtraCallback = function (a) {
+        _extraCallback = a;
+    }
 
 	this.setSize = function ( width, height ) {
 
@@ -83,6 +97,10 @@ THREE.ViewSyncEffect = function ( renderer ) {
 		renderer.setClearColor( color, 1 );
 	};
 
+    this.extraInfo = function ( object ) {
+        _extraInfo.push( object );
+    }
+
 	this.render = function ( scene, camera ) {
 
 		scene.updateMatrixWorld();
@@ -92,12 +110,13 @@ THREE.ViewSyncEffect = function ( renderer ) {
 		if ( !_slave ) { // get & send camera position & quaternion via websocket
 
 			camera.matrixWorld.decompose( _position, _quaternion, _scale );
-			var pov = { p:_position, q:_quaternion };
+			var pov = { p:_position, q:_quaternion, extra: _extraInfo };
                         var povMesg = JSON.stringify( pov );
 			//console.log("pov:"+povMesg);
 
 			if ( povMesg != _lastMesg && _wsConnected ) { // only if new data and connected
-                        	_websocket.send( povMesg );
+                _websocket.send( povMesg );
+                _extraInfo = [];
 				_lastMesg = povMesg;
 			}
 		}

@@ -26,6 +26,7 @@
 	</style>
 
 	<script src="../libs/three.js/build/three.js"></script>
+<!--	<script src="../libs/socket.io/socket.io.js"></script> -->
 
 	<script src="ViewSyncEffect.js"></script> // Alf
 
@@ -63,9 +64,10 @@
 		var cameraCube, sceneCube;
 		var stats;
 		var pointcloudMaterial;
+        var gui;
 		
 		function initGUI(){
-			var gui = new dat.GUI({
+			gui = new dat.GUI({
 				height : 5 * 32 - 1
 			});
 			
@@ -80,11 +82,13 @@
 				for(var i = 0; i < pointclouds.length; i++){
 					pointclouds[i].LOD = value;
 				}
+                viewSyncEffect.extraInfo({ 'LOD': value });
 			});
 			
 			var pPointSize = gui.add(params, 'PointSize', 0.01, 0.1);
 			pPointSize.onChange(function(value){
 				pointcloudMaterial.size = value;
+                viewSyncEffect.extraInfo({ 'pointsize': value });
 			});
 		}
 		
@@ -105,6 +109,23 @@
 
 			viewSyncEffect = new THREE.ViewSyncEffect( renderer );
 			viewSyncEffect.setSize( window.innerWidth, window.innerHeight );
+
+            viewSyncEffect.setExtraCallback( function(extra) {
+                // XXX extra is an array. I need to loop through everything in it.
+                for (var q = 0; q < extra.length; q++) {
+                    // LOD and pointsize
+                    if ( extra[q].hasOwnProperty('LOD') ) {
+                        console.log('Setting LOD to ' + extra[q].LOD);
+                        for(var i = 0; i < pointclouds.length; i++){
+                            pointclouds[i].LOD = extra[q].LOD;
+                        }
+                    }
+                    if ( extra[q].hasOwnProperty('pointsize') ) {
+                        console.log('Setting pointsize to ' + extra[q].pointsize);
+                        pointcloudMaterial.size = extra[q].pointsize;
+                    }
+                }
+            });
 
 			// start Skybox();
 			var path = "../resources/textures/skybox/";

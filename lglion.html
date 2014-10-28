@@ -80,11 +80,13 @@
 				for(var i = 0; i < pointclouds.length; i++){
 					pointclouds[i].LOD = value;
 				}
+                viewSyncEffect.extraInfo({ 'LOD': value });
 			});
 			
 			var pPointSize = gui.add(params, 'PointSize', 0.01, 0.1);
 			pPointSize.onChange(function(value){
 				pointcloudMaterial.size = value;
+                viewSyncEffect.extraInfo({ 'pointsize': value });
 			});
 		}
 		
