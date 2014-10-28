@@ -85,12 +85,15 @@ THREE.ViewSyncEffect = function ( renderer ) {
 
 		renderer.setSize( width, height );
 
-		_yawRads = _yaw * width/height * Math.PI/180; 
+		if ( _slave ) { // I don't understand but it works!
+			_yawRads = THREE.Math.degToRad( _yaw * width / height );
+ 		} else {
+ 			_yawRads = THREE.Math.degToRad( _yaw );
+ 		}
 	};
 
 	this.setClearColor = function ( color ) {
 
-		//console.log("setClearColor:"+color);
 		renderer.setClearColor( color, 1 );
 	};
 
