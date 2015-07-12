@@ -82,8 +82,8 @@ Slaves http://YOURWEBSERVER/lgpompei.html?slave&fov=25&yaw=-29
 
 ## Changelog
 
-* 2013.08.13 first public release outside of Wonderama Lab
+* 2014.08.13 first public release outside of Wonderama Lab
 
-* 2013.08.21 added effect.setClearColor but does it work?
+* 2014.08.21 added effect.setClearColor but does it work?
 
-* 2013.08.24 tweak to _yawRads. setting ?yaw=DD is correct on master now
+* 2014.08.24 tweak to _yawRads. setting ?yaw=DD is correct on master now
