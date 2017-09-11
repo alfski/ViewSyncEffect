@@ -1,4 +1,4 @@
-#ViewSyncEffect.js 
+# ViewSyncEffect.js 
 
 _Note: this README is a work in progress_
 
